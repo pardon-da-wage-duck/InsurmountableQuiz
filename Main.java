@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main
 {
   public static void main(String[] args)
@@ -8,3 +6,5 @@ public class Main
    start.runGame();
   }
 }
+
+//whoever runs this, run the program in terminal so the screen clears actually work.

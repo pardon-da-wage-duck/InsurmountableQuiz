@@ -1,27 +1,30 @@
 import java.util.Scanner;
 
 public class Game {
-    public Userprofile profile = new Userprofile();
-
+    public Userprofile profile;
     private boolean running = true;
     private boolean registered = false;
-
     private Scanner scan = new Scanner(System.in);
 
     public static void clearScreen() {
+        //borrowed this from stack overflow
+        //https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    public static void Sleep(int sec){
+    public static void Sleep(int ms){
+        //once again the guys over at stack overflow clutch up
+        //https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
         try {
-            Thread.sleep(sec*1000);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 
     public void runGame() {
+        //The run button is pressed and the magic follows. Petal to the metal!!
         startProgram();
         registerProfile();
         while (running == true) {
@@ -31,11 +34,12 @@ public class Game {
     }
 
     public boolean endGame(){
+        //Looks like somebody slammed the breaks.
         return running = false;
     }
 
     public void startProgram(){
-        //countdown for start of program
+        //Countdown for start of program, please standby while we retrieve some files
         boolean run = true;
         System.out.println("Verifying program files...");
         System.out.println("Program is running: " + run);
@@ -44,7 +48,7 @@ public class Game {
         while (countdown >= 0) {
             System.out.println(countdown + "...");
             countdown -= 1; //compound subtraction operator
-            Sleep(1);
+            Sleep(1000);
         }
         clearScreen();
     }
@@ -68,49 +72,49 @@ public class Game {
             System.out.println("Please enter a valid number");
         }
         clearScreen();
-
     }
 
     public boolean foundLetters(String s){
-        String digits = "1234567890";
+        //detects if a string contains only letters
+        String digits = "1234567890 ";
         for (int i=0; i == s.length()-1; i++) {
             for (int x = 0; x == digits.length() - 1; x++) {
                 if (!(s.substring(i, i++)).equals(digits.substring(x, x++)) == true) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     int age;
     public int registerAge(){
-
+        String a;
         while (registered == false){
             System.out.println("What is your age?: ");
-            String a = scan.nextLine();
-            if (foundLetters(a) == false){
+            a = scan.nextLine();
+            if (foundLetters(a) == true){
                 System.out.println("Please enter a valid whole number for your age.");
             }
-            registered = true;
+            else{
             age = Integer.parseInt(a);
+            break;
+            }
         }
-        return age; //auuuufu
+        return age;
     }
 
-    public Userprofile registerProfile(){
-        //plz me just fix this thing already
+    public void registerProfile(){
         Scanner scan = new Scanner(System.in);
         System.out.println("What is your name?: ");
         String username = scan.nextLine();
-        int age = registerAge();
-        profile.createprofile(username, age);
+        age = registerAge();
+        profile = new Userprofile(username, age);
+        registered = true;
         clearScreen();
-        return profile;
     }
 
     public Userprofile getProfile(){
-
         return profile;
     }
 

@@ -4,9 +4,8 @@ public class Userprofile {
     private int age;
     private int wins = 0;
     private int losses = 0;
-    private Scanner scan = new Scanner(System.in);
 
-    public void createprofile(String n, int a){
+    public Userprofile(String n, int a){
         name = n;
         age = a;
     }
