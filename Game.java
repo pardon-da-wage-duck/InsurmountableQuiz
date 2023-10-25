@@ -34,7 +34,7 @@ public class Game {
     }
 
     public boolean endGame(){
-        //Looks like somebody slammed the breaks.
+        //Looks like somebody slammed the brakes.
         return running = false;
     }
 
@@ -56,9 +56,10 @@ public class Game {
     public void HomeScreen() {
         System.out.println("The Insurmountable Quiz! \n");
         System.out.println("Options: \n (1) Play Game \n (2) Learn Trivia \n (3) Exit Game ");
-        Scanner scan = new Scanner(System.in);
+        scan = new Scanner(System.in);
         System.out.println("Select a number: ");
         String input = scan.nextLine();
+        clearScreen();
         if (input.equals("1")){
             startGame();
         }
@@ -70,52 +71,60 @@ public class Game {
         }
         else{
             System.out.println("Please enter a valid number");
+            Sleep(1000);
         }
-        clearScreen();
     }
 
     public boolean foundLetters(String s){
         //detects if a string contains only letters
         String digits = "1234567890 ";
-        for (int i=0; i == s.length()-1; i++) {
-            for (int x = 0; x == digits.length() - 1; x++) {
+        int letters = 0;
+        for (int i=0; i == s.length(); i++) {
+            for (int x = 0; x == digits.length(); x++) {
                 if (!(s.substring(i, i++)).equals(digits.substring(x, x++)) == true) {
-                    return true;
+                    letters++;
                 }
             }
         }
+        if (letters > 0) return true;
         return false;
     }
 
     int age;
     public int registerAge(){
         String a;
-        while (registered == false){
+        System.out.println("What is your age?: ");
+        a = scan.nextLine();
+        try{
+            Integer.parseInt(a);
+        }
+        catch(NumberFormatException e){
+            System.out.println("Please enter a valid whole number for your age.");
             System.out.println("What is your age?: ");
             a = scan.nextLine();
-            if (foundLetters(a) == true){
-                System.out.println("Please enter a valid whole number for your age.");
-            }
-            else{
-            age = Integer.parseInt(a);
-            break;
-            }
         }
+
+//        while (registered == false){
+//
+//            if (foundLetters(a) == true){
+//
+//            }
+//            else{
+//                age = Integer.parseInt(a);
+//                registered = true;
+//            }
+//        }
+        age = Integer.parseInt(a);
         return age;
     }
 
     public void registerProfile(){
-        Scanner scan = new Scanner(System.in);
+        scan = new Scanner(System.in);
         System.out.println("What is your name?: ");
         String username = scan.nextLine();
         age = registerAge();
         profile = new Userprofile(username, age);
-        registered = true;
         clearScreen();
-    }
-
-    public Userprofile getProfile(){
-        return profile;
     }
 
     public void startGame() {
@@ -124,7 +133,6 @@ public class Game {
 
     public void startTrivia(){
         Trivia spit_facts = new Trivia();
-        spit_facts.triviaScreen();
+        spit_facts.triviaScreen(profile);
     }
-
 }

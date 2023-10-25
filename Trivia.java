@@ -1,9 +1,26 @@
 import java.util.Scanner;
 public class Trivia {
     private boolean runtrivia = true;
-    private Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
 
-    public void triviaScreen(){
+    public static void clearScreen() {
+        //borrowed this from stack overflow
+        //https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void Sleep(int ms){
+        //once again the guys over at stack overflow clutch up
+        //https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void triviaScreen(Userprofile userprofile){
         while (runtrivia == true){
             System.out.println("What kind of trivia would you like to learn?: " +
                     "\n (1) History & Geography\n (2) Literature \n (3) Science \n (4) Movies & TV \n (5) Music" +
@@ -12,47 +29,36 @@ public class Trivia {
             System.out.println("Select a number: ");
             scan = new Scanner(System.in);
             String input = scan.nextLine();
+            clearScreen();
             if (input.equals("1")){
-
             }
             if (input.equals("2")){
-
             }
             if (input.equals("3")){
-
             }
             if (input.equals("4")){
-
             }
             if (input.equals("5")){
-
             }
             if (input.equals("6")){
-
             }
             if (input.equals("7")){
-
             }
             if (input.equals("8")){
-
             }
             if (input.equals("9")){
-
             }
             if (input.equals("10")){
-
             }
             if (input.equals("11")){
-                Game player = new Game();
-                Userprofile profile = player.getProfile();
-                usertrivia(profile.getAge());
+                usertrivia(userprofile.getAge());
             }
             if (input.equals("12")){
                 runtrivia = false;
-                scan.close();
             }
             else{
                 System.out.println("Please enter a valid number. ");
+                Sleep(1000);
             }
         }
     }
@@ -64,7 +70,7 @@ public class Trivia {
         ageindays = (int)ageindays; //casting variable as an integer
         System.out.println("\nJudging by your registered age, you are at least " + ageindays + " days old.");
 
-        Scanner scan = new Scanner(System.in);
+        scan = new Scanner(System.in);
         System.out.println("Would you like learn a piece of trivia regarding yourself? (y/n)");
         String choice = scan.nextLine();
 
@@ -80,6 +86,9 @@ public class Trivia {
         catch (ArithmeticException zero) {
           System.out.println("Please disregard this piece of trivia since a division by zero occured.");
         }
-    }
 
+        System.out.println("\nPress enter to continue");
+        String resume = scan.nextLine();
+        clearScreen();
+    }
 }
