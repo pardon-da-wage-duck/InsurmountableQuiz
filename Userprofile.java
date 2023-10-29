@@ -4,6 +4,7 @@ public class Userprofile {
     private int age;
     private int wins;
     private int losses;
+    private Scanner scan = new Scanner(System.in);
 
     public Userprofile(String n, int a){
         name = n;
@@ -30,14 +31,19 @@ public class Userprofile {
     public void addLosses(){
         losses++;
     }
+    public double calcAccuracy(){
+        return ((double)wins/(wins+losses))*100;
+    }
 
     public void getProfile(){
-        System.out.println("Player name: ");
-        System.out.println("Player age: ");
-        System.out.println("Total number of questions answered; ");
-        System.out.println("Total questions answered correctly: ");
-        System.out.println("Total questions answered incorrectly: ");
-        System.out.println("Average accuracy: ");
+        System.out.println("Player name: "+ name);
+        System.out.println("Player age: " + age);
+        System.out.println("Total number of questions answered; " + (wins + losses));
+        System.out.println("Total questions answered correctly: " + wins);
+        System.out.println("Total questions answered incorrectly: " + losses);
+        System.out.println("Average accuracy: " + calcAccuracy());
+        System.out.println("Press enter to continue. ");
+        String input = scan.nextLine();
     }
 }
 
