@@ -11,25 +11,33 @@ public class Userprofile {
         wins = 0;
         losses = 0;
     }
+
     public int getAge(){
         return age;
     }
-
-    public String getName(){
+    public String toString(){
         return name;
-    }
-
-    public void addWin() {
-        wins++;
-    }
-    public void addLosses(){
-        losses++;
     }
     public int getWins(){
         return wins;
     }
     public int getLosses(){
         return losses;
+    }
+    public void addWin() {
+        wins++;
+    }
+    public void addLosses(){
+        losses++;
+    }
+
+    public void getProfile(){
+        System.out.println("Player name: ");
+        System.out.println("Player age: ");
+        System.out.println("Total number of questions answered; ");
+        System.out.println("Total questions answered correctly: ");
+        System.out.println("Total questions answered incorrectly: ");
+        System.out.println("Average accuracy: ");
     }
 }
 

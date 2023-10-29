@@ -3,23 +3,6 @@ public class Trivia {
     private boolean runtrivia = true;
     Scanner scan = new Scanner(System.in);
 
-    public static void clearScreen() {
-        //borrowed this from stack overflow
-        //https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    public static void Sleep(int ms){
-        //once again the guys over at stack overflow clutch up
-        //https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
     public void triviaScreen(Userprofile userprofile){
         while (runtrivia == true){
             System.out.println("What kind of trivia would you like to learn?: " +
@@ -29,7 +12,7 @@ public class Trivia {
             System.out.println("Select a number: ");
             scan = new Scanner(System.in);
             String input = scan.nextLine();
-            clearScreen();
+            Transitions.clearScreen();
             if (input.equals("1")){
             }
             if (input.equals("2")){
@@ -58,7 +41,7 @@ public class Trivia {
             }
             else{
                 System.out.println("Please enter a valid number. ");
-                Sleep(1000);
+                Transitions.Sleep(1000);
             }
         }
     }
@@ -67,7 +50,7 @@ public class Trivia {
     public void usertrivia(int a){
         final double earth_age = 45430000000.0;
         double ageindays = a*365.0;
-        ageindays = (int)ageindays; //casting variable as an integer
+        ageindays = (int)(ageindays + 0.5); //casting variable as an integer
         System.out.println("\nJudging by your registered age, you are at least " + ageindays + " days old.");
 
         scan = new Scanner(System.in);
@@ -89,6 +72,6 @@ public class Trivia {
 
         System.out.println("\nPress enter to continue");
         String resume = scan.nextLine();
-        clearScreen();
+        Transitions.clearScreen();
     }
 }

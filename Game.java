@@ -1,27 +1,10 @@
 import java.util.Scanner;
 
 public class Game {
-    public Userprofile profile;
+    public Userprofile profile = null;
     private boolean running = true;
     private boolean registered = false;
     private Scanner scan = new Scanner(System.in);
-
-    public static void clearScreen() {
-        //borrowed this from stack overflow
-        //https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    public static void Sleep(int ms){
-        //once again the guys over at stack overflow clutch up
-        //https://stackoverflow.com/questions/24104313/how-do-i-make-a-delay-in-java
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     public void runGame() {
         //The run button is pressed and the magic follows. Petal to the metal!!
@@ -48,30 +31,33 @@ public class Game {
         while (countdown >= 0) {
             System.out.println(countdown + "...");
             countdown -= 1; //compound subtraction operator
-            Sleep(1000);
+            Transitions.Sleep(1000);
         }
-        clearScreen();
+        Transitions.clearScreen();
     }
 
     public void HomeScreen() {
         System.out.println("The Insurmountable Quiz! \n");
-        System.out.println("Options: \n (1) Play Game \n (2) Learn Trivia \n (3) Exit Game ");
+        System.out.println("Options: \n (1) Play Game \n (2) Learn Trivia \n (3) View Player Profile \n (4) Exit Game ");
         scan = new Scanner(System.in);
         System.out.println("Select a number: ");
         String input = scan.nextLine();
-        clearScreen();
+        Transitions.clearScreen();
         if (input.equals("1")){
-            startGame();
+            startQuiz();
         }
         else if (input.equals("2")){
             startTrivia();
         }
-        else if (input.equals("3")) {
+        else if(input.equals("3")){
+            viewProfile();
+        }
+        else if (input.equals("4")) {
             endGame();
         }
         else{
             System.out.println("Please enter a valid number");
-            Sleep(1000);
+            Transitions.Sleep(1000);
         }
     }
 
@@ -103,17 +89,6 @@ public class Game {
             System.out.println("What is your age?: ");
             a = scan.nextLine();
         }
-
-//        while (registered == false){
-//
-//            if (foundLetters(a) == true){
-//
-//            }
-//            else{
-//                age = Integer.parseInt(a);
-//                registered = true;
-//            }
-//        }
         age = Integer.parseInt(a);
         return age;
     }
@@ -124,11 +99,22 @@ public class Game {
         String username = scan.nextLine();
         age = registerAge();
         profile = new Userprofile(username, age);
-        clearScreen();
+        try{
+            System.out.println(profile);
+        }
+        catch (NullPointerException e){
+            System.out.println("NullPointerException");
+        }
+        Transitions.clearScreen();
     }
 
-    public void startGame() {
+    public void viewProfile(){
+        profile.getProfile();
+    }
 
+    public void startQuiz() {
+        Quiz quiz = new Quiz();
+        quiz.quizScreen(profile);
     }
 
     public void startTrivia(){
