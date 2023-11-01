@@ -8,8 +8,8 @@ public class Game {
 
     public void runGame() {
         //The run button is pressed and the magic follows. Petal to the metal!!
-        startProgram();
-        registerProfile();
+//        startProgram();
+//        registerProfile();
         while (running == true) {
             HomeScreen();
         }

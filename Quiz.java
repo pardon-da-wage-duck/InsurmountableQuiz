@@ -10,10 +10,24 @@ public class Quiz {
     }
 
     public void quizScreen(Userprofile profile){
+        getQuestions();
 
     }
 
     public void getQuestions(){
+        File questions = new File("Questions.txt");
+        try {
 
+            Scanner sc = new Scanner(questions);
+
+            while (sc.hasNextLine()) {
+                String i = sc.nextLine();
+                System.out.println(i);
+            }
+            sc.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
