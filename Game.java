@@ -72,11 +72,10 @@ public class Game {
                 }
             }
         }
-        if (letters > 0) return true;
-        return false;
+        return (letters > 0);
     }
 
-    int age;
+    Integer age;
     public int registerAge(){
         String a;
         System.out.println("What is your age?: ");

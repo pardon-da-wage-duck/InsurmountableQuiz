@@ -71,7 +71,7 @@ public class Trivia {
         }
 
         System.out.println("\nPress enter to continue");
-        String resume = scan.nextLine();
+        scan.nextLine();
         Transitions.clearScreen();
     }
 }

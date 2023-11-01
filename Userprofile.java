@@ -38,12 +38,13 @@ public class Userprofile {
     public void getProfile(){
         System.out.println("Player name: "+ name);
         System.out.println("Player age: " + age);
-        System.out.println("Total number of questions answered; " + (wins + losses));
+        System.out.println("Total number of questions answered: " + (wins + losses));
         System.out.println("Total questions answered correctly: " + wins);
         System.out.println("Total questions answered incorrectly: " + losses);
         System.out.println("Average accuracy: " + calcAccuracy());
         System.out.println("Press enter to continue. ");
-        String input = scan.nextLine();
+        scan.nextLine();
+        Transitions.clearScreen();
     }
 }
 
