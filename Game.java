@@ -7,9 +7,9 @@ public class Game {
     private Scanner scan = new Scanner(System.in);
 
     public void runGame() {
-        //The run button is pressed and the magic follows. Petal to the metal!!
+//      The run button is pressed and the magic follows. Petal to the metal!!
 //        startProgram();
-//        registerProfile();
+        registerProfile();
         while (running == true) {
             HomeScreen();
         }
