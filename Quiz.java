@@ -3,11 +3,12 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.lang.String;
 
 public class Quiz {
 
     private Scanner scan = new Scanner(System.in);
-    private List<List<String>> quizQuestions= new ArrayList<List<String>>();
+    private String [][] quizQuestions;
 
     public static int random(int min, int max){
         return (int)(Math.random()*(max-min)) + min;
@@ -19,29 +20,30 @@ public class Quiz {
 
     }
 
-    public void getQuestions(){
-        File questions = new File("QuizQuestions.csv");
-        try {
-            Scanner sc = new Scanner(questions);
+    public String[][] getQuestions(String filename){
+        String[][] array = new String[3][6];
+        int rowNum = 0;
+        try (Scanner myFileReader = new Scanner(new File(filename))) {
 
-            while (sc.hasNextLine()) {
-                List<String> questionSet = new ArrayList<String>();
-                questionSet.add(sc.nextLine());
-                quizQuestions.add(questionSet);
+            while (myFileReader.hasNextLine()) {
+                String line = myFileReader.nextLine();
+                Scanner sRow = new Scanner(line);
+                sRow.useDelimiter(";");
+                int colNum = 0;
+                while (sRow.hasNextLine()) {
+                    array[rowNum][colNum++] = sRow.nextLine();
+                }
+                rowNum++;
             }
-            sc.close();
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return array;
     }
 
     public void displayQuestions(){
-        for (int i = 0; i < quizQuestions.size(); i++){
-            for (int j = 0; j< quizQuestions.get(i).size(); j++){
-                System.out.println(quizQuestions.get(i).get(j));
-            }
-        }
+        quizQuestions = getQuestions("QuizQuestions.csv");
+        System.out.println(quizQuestions);
     }
 
 }

@@ -11,7 +11,7 @@ public class Game {
 //        startProgram();
         registerProfile();
         while (running == true) {
-            HomeScreen();
+            homeScreen();
         }
         scan.close();
     }
@@ -36,7 +36,7 @@ public class Game {
         Transitions.clearScreen();
     }
 
-    public void HomeScreen() {
+    public void homeScreen() {
         System.out.println("The Insurmountable Quiz! \n");
         System.out.println("Options: \n (1) Play Game \n (2) Learn Trivia \n (3) View Player Profile \n (4) Exit Game ");
         scan = new Scanner(System.in);
