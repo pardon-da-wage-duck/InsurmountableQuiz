@@ -24,4 +24,9 @@ public class Items {
     public String toString(){
         return name + "\n" + effects + "\n" + description;
     }
+
+    public boolean equals(Items other){
+        return name.equals(other.name);
+    }
+
 }

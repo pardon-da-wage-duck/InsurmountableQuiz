@@ -15,7 +15,7 @@ public class Quiz {
     }
 
     public void quizScreen(Userprofile profile){
-        getQuestions();
+//        getQuestions("QuizQuestions.csv");
         displayQuestions();
 
     }
