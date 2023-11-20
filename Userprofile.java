@@ -41,7 +41,7 @@ public class Userprofile {
         System.out.println("Total number of questions answered: " + (wins + losses));
         System.out.println("Total questions answered correctly: " + wins);
         System.out.println("Total questions answered incorrectly: " + losses);
-        System.out.println("Average accuracy: " + calcAccuracy());
+        System.out.println("Average accuracy: " + calcAccuracy() + "%");
         System.out.println("Press enter to return to title screen. ");
         scan.nextLine();
         Transitions.clearScreen();
