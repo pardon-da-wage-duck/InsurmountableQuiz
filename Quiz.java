@@ -7,37 +7,63 @@ import java.lang.String;
 
 public class Quiz {
     private Scanner scan = new Scanner(System.in);
-    private String [][] quizQuestions;
+    private String [][] quizQuestions = csvTo2dArray("QuizQuestions.csv", 3, 6);
+    private boolean runQuiz = true;
+
     public static int random(int min, int max){
         return (int)(Math.random()*(max-min)) + min;
     }
-    public void quizScreen(Userprofile profile){
-        displayQuestions(profile);
 
+    public void quizScreen(Userprofile profile) {
+        int i = 1;
+        while (runQuiz) {
+            boolean validAnswer = false;
+            System.out.println("Questions answered correctly: " + profile.getWins() + "\nQuestions answer incorrectly: " + profile.getLosses());
+            System.out.println("\nQuestions #" + i);
+            System.out.println(quizQuestions[i][0]);
+            System.out.println("(A) " + quizQuestions[i][1]);
+            System.out.println("(B) " + quizQuestions[i][2]);
+            System.out.println("(C) " + quizQuestions[i][3]);
+            System.out.println("(D) " + quizQuestions[i][4]);
+            System.out.println("\nYour Options: " +
+                    "\n (1) Answer the Question " +
+                    "\n (2) Use an Item " +
+                    "\n (3) Skip this Question " +
+                    "\n (4) Quit session");
+            System.out.println("Please enter a number: ");
+            scan = new Scanner(System.in);
+            String userInput = scan.nextLine();
+            if (userInput.equals("1")) {
+                boolean answering = true;
+                while (answering){
+                    System.out.println("Enter your answer: ");
+                    String answer = scan.nextLine().toUpperCase();
+                    if (answer.equals(quizQuestions[i][5])) {
+                        answering = false;
+                        profile.addWin();
+                    }
+                    else if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D")) {
+                        answering = false;
+                        profile.addLosses();
+                    }
+                }
+                i++;
+                if (i == quizQuestions.length) endQuiz();
+            }
+            else if (userInput.equals("2")) ;
+            else if (userInput.equals("3")) validAnswer = true;
+            else if (userInput.equals("4")) {
+                System.out.println("Are you sure that you want to quit? (y/n)");
+                scan = new Scanner(System.in);
+                String userInput2 = scan.nextLine().toLowerCase();
+                if (userInput2.equals("y")) endQuiz();
+            }
+            Transitions.clearScreen();
+        }
     }
 
-    public void displayQuestions(Userprofile profile){
-        quizQuestions = csvTo2dArray("QuizQuestions.csv", 3, 6);
-        for (int i = 1; i < quizQuestions.length; i++){
-            boolean validAnswer = false;
-            while (!validAnswer){
-                System.out.println("Questions answered correctly: " + profile.getWins() + "\nQuestions answer incorrectly: " + profile.getLosses());
-                System.out.println("Questions #" + i);
-                System.out.println(quizQuestions[i][0]);
-                System.out.println("(A) " + quizQuestions[i][1]);
-                System.out.println("(B) " + quizQuestions[i][2]);
-                System.out.println("(C) " + quizQuestions[i][3]);
-                System.out.println("(D) " + quizQuestions[i][4]);
-                System.out.println("Your answer: ");
-                String answer = scan.nextLine().toUpperCase();
-                if (answerValidity(answer)) {
-                    validAnswer = true;
-                    if (answer.equals(quizQuestions[i][5])) profile.addWin();
-                    else profile.addLosses();
-                }
-                Transitions.clearScreen();
-            }
-        }
+    public boolean endQuiz(){
+        return runQuiz = false;
     }
 
     public String[][] csvTo2dArray(String filename, int rows, int columns){
@@ -45,14 +71,12 @@ public class Quiz {
         //thanks to g00se from stackoverflow for reference
         //Scans csv file and converts it into a 2D array
         String[][] array = new String[rows][columns];
-
         int rowNum = 0;
         try (Scanner myFileReader = new Scanner(new File(filename))) {
             while (myFileReader.hasNextLine()) {
-                String line = myFileReader.nextLine(); //line
-                Scanner sCol = new Scanner(line); //scan line
+                String line = myFileReader.nextLine();
+                Scanner sCol = new Scanner(line);
                 sCol.useDelimiter(",");
-
                 int colNum = 0;
                 while (sCol.hasNext()) {
                     array[rowNum][colNum++] = sCol.next();
@@ -65,13 +89,4 @@ public class Quiz {
         return array;
     }
 
-    public boolean answerValidity(String str){
-        if (str.length() != 1) return false;
-        String[] choices = {"A", "B", "C", "D"};
-        int valid = 0;
-        for (int i = 0; i< choices.length; i++){
-            if (!str.equals(choices[i])) valid++;
-        }
-        return valid < 4;
-    }
 }
