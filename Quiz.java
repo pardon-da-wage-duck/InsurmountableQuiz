@@ -21,10 +21,9 @@ public class Quiz {
             System.out.println("Questions answered correctly: " + profile.getWins() + "\nQuestions answer incorrectly: " + profile.getLosses());
             System.out.println("\nQuestions #" + i);
             System.out.println(quizQuestions[i][0]);
-            System.out.println("(A) " + quizQuestions[i][1]);
-            System.out.println("(B) " + quizQuestions[i][2]);
-            System.out.println("(C) " + quizQuestions[i][3]);
-            System.out.println("(D) " + quizQuestions[i][4]);
+            for (int j= 1; j<=4; j++){ //displays multiple choice questions
+                System.out.println(quizQuestions[0][j] + quizQuestions[i][j]);
+            }
             System.out.println("\nYour Options: " +
                     "\n (1) Answer the Question " +
                     "\n (2) Use an Item " +
@@ -48,7 +47,7 @@ public class Quiz {
                     }
                 }
                 i++;
-                if (i == quizQuestions.length) endQuiz();
+                if (i == quizQuestions.length) runQuiz = false;
             }
             else if (userInput.equals("2")) ;
             else if (userInput.equals("3")) validAnswer = true;
@@ -56,14 +55,10 @@ public class Quiz {
                 System.out.println("Are you sure that you want to quit? (y/n)");
                 scan = new Scanner(System.in);
                 String userInput2 = scan.nextLine().toLowerCase();
-                if (userInput2.equals("y")) endQuiz();
+                if (userInput2.equals("y")) runQuiz = false;
             }
             Transitions.clearScreen();
         }
-    }
-
-    public boolean endQuiz(){
-        return runQuiz = false;
     }
 
     public String[][] csvTo2dArray(String filename, int rows, int columns){
