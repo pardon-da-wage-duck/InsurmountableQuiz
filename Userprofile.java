@@ -4,6 +4,7 @@ public class Userprofile {
     private int age;
     private int wins;
     private int losses;
+    private int schmeckels;
     private Scanner scan = new Scanner(System.in);
 
     public Userprofile(String n, int a){
@@ -11,6 +12,7 @@ public class Userprofile {
         age = a;
         wins = 0;
         losses = 0;
+        schmeckels = 0;
     }
 
     public int getAge(){
@@ -30,6 +32,9 @@ public class Userprofile {
     }
     public void addLosses(){
         losses++;
+    }
+    public void addSchmeckels(){
+        schmeckels++;
     }
     public double calcAccuracy(){
         return ((double)wins/(wins+losses))*100;

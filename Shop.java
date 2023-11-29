@@ -1,11 +1,16 @@
+import java.util.Scanner;
+
 public class Shop {
-    public void displayItem(Items item){
-        System.out.println(item.toString());
+    private Scanner scan = new Scanner(System.in);
+
+    public void shopScren(Userprofile profile){
+        System.out.println("Welcome to the in-game Shop!");
+        scan.nextLine();
+        Transitions.clearScreen();
     }
 
-    public void shop(String[] args){
-        Items item1 = new Items();
-        displayItem(item1);
+    public void displayItem(Items item){
+        System.out.println(item.toString());
     }
 
 }
