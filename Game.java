@@ -7,7 +7,7 @@ public class Game {
 
     public void runGame() {
 //      The run button is pressed and the magic follows. Petal to the metal!!
-//        startProgram();
+        startProgram();
         registerProfile();
         while (running) {
             homeScreen();
@@ -16,39 +16,40 @@ public class Game {
     }
 
     public void startProgram(){
-        //Countdown for start of program, please standby while we retrieve some files
-        boolean run = true;
-        System.out.println("Verifying program files...");
-        System.out.println("Program is running: " + run);
-        System.out.println("Starting program in: ");
-        int countdown = 3; //initialize and assign int
-        while (countdown >= 0) {
-            System.out.println(countdown + "...");
-            countdown -= 1; //compound subtraction operator
-            Transitions.Sleep(1000);
-        }
-        Transitions.clearScreen();
+        //Opening loading screen, please standby while we retrieve some files
+//        boolean run = true;
+//        System.out.println("Verifying program files...");
+//        System.out.println("Program is running: " + run);
+//        System.out.println("Starting program in: ");
+//        int countdown = 3; //initialize and assign int
+//        while (countdown >= 0) {
+//            System.out.println(countdown + "...");
+//            countdown -= 1; //compound subtraction operator
+//            Transitions.Sleep(1000);
+//        }
+//        Transitions.clearScreen();
     }
 
     public void homeScreen() {
-        System.out.println("The Insurmountable Quiz! \n");
-        System.out.println("Options: \n (1) Play Game \n (2) Open Shop \n (3) View Player Profile \n (4) Exit Game ");
-        scan = new Scanner(System.in);
-        System.out.println("Select a number: ");
-        String input = scan.nextLine();
-        Transitions.clearScreen();
-        if (input.equals("1")){
-            startQuiz();
-        } else if (input.equals("2")){
-            startShop();
-        } else if(input.equals("3")){
-            viewProfile();
-        } else if (input.equals("4")) {
-            running = false;
-        } else{
-            System.out.println("Please enter a valid number");
-            Transitions.Sleep(1000);
-        }
+//        System.out.println("The Insurmountable Quiz! \n");
+//        System.out.println("Options: \n (1) Play Game \n (2) Open Shop \n (3) View Player Profile \n (4) Exit Game ");
+//        scan = new Scanner(System.in);
+//        System.out.println("Select a number: ");
+//        String input = scan.nextLine();
+//        Transitions.clearScreen();
+//        if (input.equals("1")){
+//            startQuiz();
+//        } else if (input.equals("2")){
+//            startShop();
+//        } else if(input.equals("3")){
+//            viewProfile();
+//        } else if (input.equals("4")) {
+//            running = false;
+//        } else{
+//            System.out.println("Please enter a valid number");
+//            Transitions.Sleep(1000);
+//        }
+
     }
 
     Integer age;
