@@ -14,7 +14,7 @@ public class Main{
 //        start.runGame();
 
         JLabel title = new JLabel("The Insurmountable Quiz");
-        title.setHorizontalAlignment(title.CENTER);
+        title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("Verdana", Font.PLAIN, 30));
         window.add(title);
     }
